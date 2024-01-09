@@ -17,7 +17,7 @@
         'bg-[#151A1E]': dismissWeek <= makeWeekKey({ week, year })
       }"
     >
-      <div v-if="dismissWeek === makeWeekKey({ week, year })">x</div>
+      <div v-if="dismissWeek === makeWeekKey({ week, year })" class="text-[#556271]">x</div>
       <div v-else />
     </div>
 
