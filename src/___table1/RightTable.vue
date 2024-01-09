@@ -27,7 +27,7 @@ export default {
       required: true
     }
   },
-  emits: ['scroll', 'changeSelectedWeek'],
+  emits: ['scroll', 'changeSelectedWeek', 'mouseLeaveFromHeaderWeek'],
   data() {
     return {
       // TODO: currentWeek from vuex-store
@@ -72,14 +72,16 @@ export default {
 
 <template>
   <div class="relative">
-    <TableHeader
+    <table-header
       :weeks="weeks"
       :months="months"
       :currentWeek="currentWeek"
       :selectedWeek="selectedWeek"
       @changeSelectedWeek="$emit('changeSelectedWeek', $event)"
+      @mouseLeaveFromHeaderWeek="$emit('mouseLeaveFromHeaderWeek')"
     />
-    <TableBody
+    <table-body
+      :currentWeek="currentWeek"
       :progressList="progressList"
       :weeks="weeks"
       :selectedWeek="selectedWeek"

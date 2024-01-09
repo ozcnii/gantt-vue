@@ -19,7 +19,7 @@ export default {
       required: true
     }
   },
-  emits: ['changeSelectedWeek'],
+  emits: ['changeSelectedWeek', 'mouseLeaveFromHeaderWeek'],
   methods: {
     makeWeekKey
   }
@@ -53,6 +53,7 @@ export default {
         }"
         :key="makeWeekKey({ week, year })"
         @mouseover="$emit('changeSelectedWeek', makeWeekKey({ week, year }))"
+        @mouseleave="$emit('mouseLeaveFromHeaderWeek')"
       >
         {{ week }}
       </div>

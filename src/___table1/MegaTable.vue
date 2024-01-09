@@ -30,7 +30,7 @@ export default {
     scrollHandler(event) {
       this.scrollPosition = event.target.scrollTop
     },
-    tableMouseoutHandler() {
+    weekMouseLeaveHandler() {
       this.selectedWeek = null
       this.selectedEmployee = null
     },
@@ -55,25 +55,21 @@ export default {
   TODO:selectedEmployee
   <div ref="wrapperRef" class="h-[80vh]">
     <div class="flex" :style="{ height: wrapperHeight + 'px' }">
-      <LeftMenu
+      <left-menu
         :organizations="organizations"
         :scrollPosition="scrollPosition"
         @toggle-open="toggleOpenOrganization"
         @scroll="scrollHandler"
       />
-      <div
-        class="overflow-x-scroll"
-        ref="rightTableWrapper"
-        @mouseleave="tableMouseoutHandler"
-        @scroll="scrollHandler"
-      >
-        <RightTable
+      <div class="overflow-x-scroll" ref="rightTableWrapper" @scroll="scrollHandler">
+        <right-table
           :organizations="organizations"
           :weeks="weeks"
           :months="months"
           :selectedWeek="selectedWeek"
           :scrollPosition="scrollPosition"
           @changeSelectedWeek="changeSelectedWeek"
+          @mouseLeaveFromHeaderWeek="weekMouseLeaveHandler"
         />
       </div>
     </div>

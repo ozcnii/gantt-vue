@@ -1,11 +1,11 @@
 <script>
-import DefaultRow from './DefaultRow.vue'
+import EmployeeRow from './EmployeeRow.vue'
 import EmptyRow from './EmptyRow.vue'
-import ParentRow from './ParentRow.vue'
+import ProjectRow from './ProjectRow.vue'
 import { makeWeekKey } from '../utils'
 
 export default {
-  components: { EmptyRow, ParentRow, DefaultRow },
+  components: { EmptyRow, ProjectRow, EmployeeRow },
   props: {
     progressList: {
       type: Array,
@@ -16,6 +16,10 @@ export default {
       required: true
     },
     selectedWeek: {
+      type: [String, null],
+      required: true
+    },
+    currentWeek: {
       type: [String, null],
       required: true
     }
@@ -52,15 +56,20 @@ export default {
     class="border-b border-[#556271] flex h-[38px]"
     :key="index"
   >
-    <EmptyRow v-if="isEmpty" :weeks="weeks" />
+    <empty-row v-if="isEmpty" :weeks="weeks" />
 
     <template v-else>
-      <ParentRow
+      <project-row
         v-if="isParent"
         :progress="getProgressRow(progress)"
         :selectedWeek="selectedWeek"
       />
-      <DefaultRow v-else :progress="getProgressRow(progress)" :selectedWeek="selectedWeek" />
+      <employee-row
+        v-else
+        :progress="getProgressRow(progress)"
+        :selectedWeek="selectedWeek"
+        :currentWeek="currentWeek"
+      />
     </template>
   </div>
 </template>

@@ -30,7 +30,7 @@ export default {
   >
     <div class="h-[40px] w-full bg-[#151A1E] sticky left-0 top-0" />
     <div>
-      <MenuOrganizationDropdown
+      <menu-organization-dropdown
         v-for="organization in organizations"
         :key="organization.name"
         :organization="organization"
