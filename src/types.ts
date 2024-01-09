@@ -6,7 +6,8 @@ export type Progress = {
 export type Employee = {
     id: number,
     name: string,
-    progress: Progress[]
+    dismissWeek?: string,
+    progress: Progress[],
 }
 
 export type Position = {

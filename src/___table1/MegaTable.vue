@@ -1,3 +1,28 @@
+<template>
+  TODO:selectedEmployee
+  <div ref="wrapperRef" class="h-[80vh]">
+    <div class="flex" :style="{ height: wrapperHeight + 'px' }">
+      <left-menu
+        :organizations="organizations"
+        :scrollPosition="scrollPosition"
+        @toggle-open="toggleOpenOrganization"
+        @scroll="scrollHandler"
+      />
+      <div class="overflow-x-scroll" ref="rightTableWrapper" @scroll="scrollHandler">
+        <right-table
+          :organizations="organizations"
+          :weeks="weeks"
+          :months="months"
+          :selectedWeek="selectedWeek"
+          :scrollPosition="scrollPosition"
+          @changeSelectedWeek="changeSelectedWeek"
+          @mouseLeaveFromHeaderWeek="weekMouseLeaveHandler"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
 import LeftMenu from './LeftMenu.vue'
 import RightTable from './RightTable.vue'
@@ -50,28 +75,3 @@ export default {
   }
 }
 </script>
-
-<template>
-  TODO:selectedEmployee
-  <div ref="wrapperRef" class="h-[80vh]">
-    <div class="flex" :style="{ height: wrapperHeight + 'px' }">
-      <left-menu
-        :organizations="organizations"
-        :scrollPosition="scrollPosition"
-        @toggle-open="toggleOpenOrganization"
-        @scroll="scrollHandler"
-      />
-      <div class="overflow-x-scroll" ref="rightTableWrapper" @scroll="scrollHandler">
-        <right-table
-          :organizations="organizations"
-          :weeks="weeks"
-          :months="months"
-          :selectedWeek="selectedWeek"
-          :scrollPosition="scrollPosition"
-          @changeSelectedWeek="changeSelectedWeek"
-          @mouseLeaveFromHeaderWeek="weekMouseLeaveHandler"
-        />
-      </div>
-    </div>
-  </div>
-</template>

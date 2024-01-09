@@ -1,3 +1,28 @@
+<template>
+  <div
+    @scroll="$emit('scroll', $event)"
+    v-for="({ progress, isProject, isEmpty, dismissWeek }, index) in progressList"
+    class="border-b border-[#556271] flex h-[38px]"
+    :key="index"
+  >
+    <empty-row v-if="isEmpty" :weeks="weeks" />
+
+    <template v-else>
+      <project-row
+        v-if="isProject"
+        :progress="getProgressRow(progress)"
+        :selectedWeek="selectedWeek"
+      />
+      <employee-row
+        v-else
+        :progress="getProgressRow(progress, dismissWeek)"
+        :selectedWeek="selectedWeek"
+        :currentWeek="currentWeek"
+      />
+    </template>
+  </div>
+</template>
+
 <script>
 import EmployeeRow from './EmployeeRow.vue'
 import EmptyRow from './EmptyRow.vue'
@@ -27,49 +52,34 @@ export default {
   emits: ['scroll'],
   methods: {
     makeWeekKey,
-    getProgressRow(progress) {
+    getProgressRow(progress, dismissWeek) {
       // TODO: calc in watch ???
       const resultMap = {}
       const progressMap = {}
 
-      progress.forEach(({ week, year, value }) => {
+      progress.forEach((progressValue) => {
+        const { week, year } = progressValue
         const key = this.makeWeekKey({ week, year })
-        progressMap[key] = { week, year, value }
+        progressMap[key] = {
+          ...progressValue,
+          dismissWeek,
+          isDissmissedWeak: dismissWeek <= key
+        }
       })
 
       this.weeks.forEach(({ week, year }) => {
         const key = this.makeWeekKey({ week, year })
         // TODO: need emptyValue & removeValue
-        resultMap[key] = progressMap[key] || { value: null, year: 0, week: 0 }
+        resultMap[key] = progressMap[key] || {
+          value: null,
+          year: 0,
+          week: 0,
+          dismissWeek: null,
+          isDissmissedWeak: false
+        }
       })
-
       return Object.values(resultMap)
     }
   }
 }
 </script>
-
-<template>
-  <div
-    @scroll="$emit('scroll', $event)"
-    v-for="({ progress, isParent, isEmpty }, index) in progressList"
-    class="border-b border-[#556271] flex h-[38px]"
-    :key="index"
-  >
-    <empty-row v-if="isEmpty" :weeks="weeks" />
-
-    <template v-else>
-      <project-row
-        v-if="isParent"
-        :progress="getProgressRow(progress)"
-        :selectedWeek="selectedWeek"
-      />
-      <employee-row
-        v-else
-        :progress="getProgressRow(progress)"
-        :selectedWeek="selectedWeek"
-        :currentWeek="currentWeek"
-      />
-    </template>
-  </div>
-</template>

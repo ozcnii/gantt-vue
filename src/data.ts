@@ -26,6 +26,8 @@ const mockData: Organization[] = [
           {
             id: 1,
             name: 'John Doe',
+            // TODO: maybe use date ???
+            dismissWeek: "26-2023",
             progress: [
               {
                 week: 1,
