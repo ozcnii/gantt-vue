@@ -27,7 +27,7 @@ const mockData: Organization[] = [
             id: 1,
             name: 'John Doe',
             // TODO: maybe use date ???
-            dismissWeek: "26-2023",
+            dismissWeek: "2023-26",
             progress: [
               {
                 week: 1,
@@ -440,13 +440,83 @@ function generateSimilarCode(organizations, weeksStart, weeksEnd, year) {
   return newOrganizations
 }
 
-// const weeksStart = 3;
-// const weeksEnd = 10;
+const weeksStart = 21
+const weeksEnd = 39
 
-const weeksStart = 19
-const weeksEnd = 50
+const weeksStart2 = 45
+const weeksEnd2 = 50
 
 export const organizations = [
+  {
+    name: 'planned',
+    progress: [],
+    startDate: {
+      week: 20,
+      year: 2023
+    },
+  },
+  {
+    name: 'ended_planned',
+    progress: [],
+    startDate: {
+      week: 43,
+      year: 2023
+    },
+    endDate: {
+      week: 5,
+      year: 2024
+    },
+  },
+  {
+    name: 'ended_with_progress',
+    progress: [
+      {
+        week: 1,
+        year: 2024,
+        value: 10,
+      },
+      {
+        week: 2,
+        year: 2024,
+        value: 30,
+      }, {
+        week: 3,
+        year: 2024,
+        value: 40,
+      }, {
+        week: 4,
+        year: 2024,
+        value: 50,
+      },
+      {
+        week: 5,
+        year: 2024,
+        value: 70,
+      },
+      {
+        week: 6,
+        year: 2024,
+        value: 90,
+      }
+    ],
+    endDate: {
+      week: 4,
+      year: 2024
+    },
+  },
+  {
+    name: 'planned_ended_ne_skoro',
+    progress: [],
+
+    startDate: {
+      week: 40,
+      year: 2023
+    },
+    endDate: {
+      week: 33,
+      year: 2024
+    },
+  },
   {
     name: 'GGGGGGGGGGGGGGGGGG',
     isOpen: true,
@@ -497,7 +567,8 @@ export const organizations = [
       }
     ]
   },
-  ...generateSimilarCode(mockData, weeksStart, weeksEnd, 2023)
+  ...generateSimilarCode(mockData, weeksStart, weeksEnd, 2023),
+  ...generateSimilarCode(mockData, weeksStart2, weeksEnd2, 2023)
 ]
 
 export const months = [

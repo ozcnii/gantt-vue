@@ -12,7 +12,7 @@ export default {
 <template>
   <div
     v-for="(week, index) in weeks"
-    class="min-w-[38px] h-[38px]"
+    class="border-b border-[#556271] min-w-[38px] h-[38px]"
     :class="{
       'border-r border-[#556271]': (index + 1) % 4 == 0
     }"

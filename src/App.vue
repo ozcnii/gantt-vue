@@ -1,6 +1,5 @@
 <script setup>
 import MegaTable from './___table1/MegaTable.vue'
-import TableRows from './table-rows/TableRows.vue'
 </script>
 
 <template>
@@ -12,11 +11,5 @@ import TableRows from './table-rows/TableRows.vue'
 
       <MegaTable />
     </div>
-    <!-- <div class="bg-[#323C46] rounded-lg min-h-[80vh]">
-      <h2 class="p-[13px]">Планирование ресурсов по проектам</h2>
-      <div class="h-[80vh] overflow-auto">
-        <table-rows></table-rows>
-      </div>
-    </div> -->
   </div>
 </template>

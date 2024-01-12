@@ -1,5 +1,5 @@
 <template>
-  TODO:selectedEmployee
+  <span class="bg-red-500 text-white">TODO:selectedEmployee</span>
   <div ref="wrapperRef" class="h-[80vh]">
     <div class="flex" :style="{ height: wrapperHeight + 'px' }">
       <left-menu

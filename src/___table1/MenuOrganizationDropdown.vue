@@ -28,7 +28,7 @@ export default {
 
     <template v-if="organization.isOpen">
       <div
-        v-for="position in organization.positions"
+        v-for="position in organization?.positions"
         class="flex justify-between min-h-[38px] border-b border-b-[#556271]"
         :key="position.name"
       >

@@ -27,13 +27,13 @@ export default {
 </script>
 
 <template>
-  <div class="bg-[#151A1E] text-center sticky w-full left-0 top-0">
+  <div class="text-center sticky w-full left-0 top-0">
     <!-- months -->
     <div class="flex">
       <div
         v-for="month in months"
         :key="month"
-        class="border-r border-[#556271] h-[20px] text-[10px] uppercase font-normal"
+        class="bg-[#151A1E] border-r border-[#556271] h-[20px] text-[10px] uppercase font-normal"
         :style="{ minWidth: 38 * 4 + 'px' }"
         colspan="4"
       >
@@ -45,7 +45,7 @@ export default {
     <div class="flex">
       <div
         v-for="({ week, year }, weekIndex) in weeks"
-        class="h-[20px] min-h-[20px] min-w-[38px] text-[12px] font-normal cursor-pointer"
+        class="bg-[#151A1E] h-[20px] min-h-[20px] min-w-[38px] text-[12px] font-normal cursor-pointer"
         :class="{
           'border-r border-[#556271]': (weekIndex + 1) % 4 == 0,
           'bg-red-500': selectedWeek == makeWeekKey({ week, year }),

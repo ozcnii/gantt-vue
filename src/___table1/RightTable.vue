@@ -52,7 +52,7 @@ export default {
     return {
       // TODO: currentWeek from vuex-store
       // TODO: нет 30й недели
-      currentWeek: `31-2023`
+      currentWeek: `2023-31`
     }
   },
   computed: {
@@ -62,7 +62,9 @@ export default {
         res.push({
           isProject: true,
           isEmpty: false,
-          progress: organization.progress
+          progress: organization.progress,
+          startDate: organization.startDate,
+          endDate: organization.endDate
         })
 
         if (organization.isOpen) {
